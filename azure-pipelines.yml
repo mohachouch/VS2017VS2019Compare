@@ -1,28 +1,61 @@
-trigger:
-- master
+jobs:
 
-pool:
-  vmImage: 'vs2017-win2016'
+- job: Build VS2017
+  trigger:
+  - master
 
-variables:
-  buildConfiguration: 'Release'
-  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  pool:
+    vmImage: 'vs2017-win2016'
 
-steps:
-- task: NuGetToolInstaller@1
+  variables:
+    buildConfiguration: 'Release'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '**/*.sln'
+  steps:
+  - task: NuGetToolInstaller@1
 
-- task: XamarinAndroid@1
-  inputs:
-    projectFile: '**/CompareVS2017VS2019.Android.csproj'
-    configuration: '$(buildConfiguration)'
-    msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/" /p:AndroidNdkDirectory=$(ANDROID_NDK_HOME) /t:SignAndroidPackage /p:AndroidKeyStore=false' 
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)'
-    ArtifactName: 'Output'
-    publishLocation: 'Container'
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '**/CompareVS2017VS2019.Android.csproj'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/" /p:AndroidNdkDirectory=$(ANDROID_NDK_HOME) /t:SignAndroidPackage /p:AndroidKeyStore=false' 
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.SourcesDirectory)'
+      ArtifactName: 'Output'
+      publishLocation: 'Container'
+
+- job: Build VS2019
+  trigger:
+  - master
+
+  pool:
+    vmImage: 'windows-latest'
+
+  variables:
+    buildConfiguration: 'Release'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+  steps:
+  - task: NuGetToolInstaller@1
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
+
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '**/CompareVS2017VS2019.Android.csproj'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/" /p:AndroidNdkDirectory=$(ANDROID_NDK_HOME) /t:SignAndroidPackage /p:AndroidKeyStore=false' 
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.SourcesDirectory)'
+      ArtifactName: 'Output'
+      publishLocation: 'Container'
