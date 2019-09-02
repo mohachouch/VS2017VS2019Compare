@@ -1,5 +1,9 @@
 # Compare VS2017 and VS2019 build
 
+I noticed a performance degradation between VS2017 and VS 2019 for the same application and same configuration. 
+
+The activity is slower at launch and the apk is bigger.
+
 Platform affected : Android<br/>
 Application : Xamarin Forms - Blank template<br/>
 TargetFrameworkVersion : v8.1<br/>
