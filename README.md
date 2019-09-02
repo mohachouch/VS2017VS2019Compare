@@ -2,11 +2,11 @@
 
 ## Configuration
 
-Platform affected : Android
-Application : Xamarin Forms - Blank template
-TargetFrameworkVersion : v8.1
-Configuration : Release
-AotAssemblies : Enabled
+Platform affected : Android<br/>
+Application : Xamarin Forms - Blank template<br/>
+TargetFrameworkVersion : v8.1<br/>
+Configuration : Release<br/>
+AotAssemblies : Enabled<br/>
 
 ## Results
 
