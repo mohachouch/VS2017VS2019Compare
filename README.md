@@ -1,7 +1,5 @@
 # Compare VS2017 and VS2019 build
 
-## Configuration
-
 Platform affected : Android<br/>
 Application : Xamarin Forms - Blank template<br/>
 TargetFrameworkVersion : v8.1<br/>
