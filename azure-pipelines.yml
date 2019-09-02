@@ -1,9 +1,6 @@
 jobs:
 
 - job: Build VS2017
-  trigger:
-  - master
-
   pool:
     vmImage: 'vs2017-win2016'
 
@@ -31,9 +28,6 @@ jobs:
       publishLocation: 'Container'
 
 - job: Build VS2019
-  trigger:
-  - master
-
   pool:
     vmImage: 'windows-latest'
 
