@@ -1,6 +1,6 @@
 jobs:
 
-- job: Build VS2017
+- job: BuildVS2017
   pool:
     vmImage: 'vs2017-win2016'
 
@@ -27,7 +27,7 @@ jobs:
       ArtifactName: 'Output'
       publishLocation: 'Container'
 
-- job: Build VS2019
+- job: BuildVS2019
   pool:
     vmImage: 'windows-latest'
 
