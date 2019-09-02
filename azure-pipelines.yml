@@ -1,0 +1,28 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/CompareVS2017VS2019.Android.csproj'
+    configuration: '$(buildConfiguration)'
+    msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/" /p:AndroidNdkDirectory=$(ANDROID_NDK_HOME) /t:SignAndroidPackage /p:AndroidKeyStore=false' 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)'
+    ArtifactName: 'Output'
+    publishLocation: 'Container'
