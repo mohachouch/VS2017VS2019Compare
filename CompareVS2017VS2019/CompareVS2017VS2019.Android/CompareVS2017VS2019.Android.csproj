@@ -42,6 +42,7 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AotAssemblies>True</AotAssemblies>
+    <AndroidEnablePreloadAssemblies>false</AndroidEnablePreloadAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
