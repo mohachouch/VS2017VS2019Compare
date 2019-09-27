@@ -2,7 +2,7 @@
 
 I noticed a performance degradation between VS2017 and VS 2019 for the same application and same configuration. 
 
-The activity is slower at launch and the apk is bigger.
+The activity is slower at launch and the apk is bigger...
 
 ## Configuration
 
